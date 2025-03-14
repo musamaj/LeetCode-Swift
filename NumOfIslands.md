@@ -65,7 +65,7 @@ Time Complexity: O(m × n) (Each cell is visited once)
 Space Complexity: O(m × n) (Worst case recursive stack depth)
 
 
-```
+```swift
 func numIslands(_ grid: [[Character]]) -> Int {
     var grid = grid
     let rows = grid.count
