@@ -1,13 +1,34 @@
-You are given a 2-D matrix grid. Each cell can have one of three possible values:
+# Rotten Oranges - BFS Solution in Swift 🍊  
 
-0 representing an empty cell
-1 representing a fresh fruit
-2 representing a rotten fruit
-Every minute, if a fresh fruit is horizontally or vertically adjacent to a rotten fruit, then the fresh fruit also becomes rotten.
+## Problem Statement  
+You are given an `m x n` grid where:  
+- `0` represents an empty cell.  
+- `1` represents a fresh orange.  
+- `2` represents a rotten orange.  
 
-Return the minimum number of minutes that must elapse until there are zero fresh fruits remaining. If this state is impossible within the grid, return -1.
+Every minute, any fresh orange that is **4-directionally adjacent** to a rotten orange **becomes rotten**.  
+Return the **minimum time** required for all oranges to rot. If it's impossible, return `-1`.  
 
-//
+---
+
+## Solution Approach - Breadth-First Search (BFS)  
+
+We use **Breadth-First Search (BFS)** to simulate the rotting process, as it spreads layer by layer (minute by minute).  
+
+1. **Initialize a queue** with the coordinates of all rotten oranges.  
+2. **Count the fresh oranges** in the grid.  
+3. **Perform BFS traversal**:
+   - At each step, process all rotten oranges in the queue.
+   - Spread the rot to adjacent fresh oranges and update the grid.
+   - Reduce the count of fresh oranges.
+   - Increase the time counter.  
+4. **Return the time taken** if all fresh oranges are rotten; otherwise, return `-1`.  
+
+---
+
+## Swift Implementation 🚀  
+
+```swift
 import Foundation
 
 func orangesRotting(_ grid: inout [[Int]]) -> Int {
@@ -53,10 +74,8 @@ func orangesRotting(_ grid: inout [[Int]]) -> Int {
     return fresh == 0 ? time : -1
 }
 
-Explanation of Changes:
-Used a Swift Array (queue) instead of deque.
-Used tuples (Int, Int) for queue elements.
-Checked bounds safely using if row >= 0, row < rows, col >= 0, col < cols.
-Used removeFirst() to mimic popleft() behavior in BFS.
-Kept the logic unchanged, ensuring BFS spreads the rotten oranges until no fresh oranges remain.
-This function modifies grid in place and returns the minimum time required for all oranges to rot. If some fresh oranges remain unreachable, it returns -1. 🚀
+###Complexity Analysis
+Time Complexity: O(m × n)
+Each cell is processed at most once.
+Space Complexity: O(m × n)
+In the worst case, all oranges are stored in the queue.
