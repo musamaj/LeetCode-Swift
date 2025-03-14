@@ -73,8 +73,9 @@ func orangesRotting(_ grid: inout [[Int]]) -> Int {
 
     return fresh == 0 ? time : -1
 }
+```
 
-###Complexity Analysis
+## Complexity Analysis
 Time Complexity: O(m × n)
 Each cell is processed at most once.
 Space Complexity: O(m × n)
