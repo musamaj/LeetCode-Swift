@@ -1,0 +1,62 @@
+You are given a 2-D matrix grid. Each cell can have one of three possible values:
+
+0 representing an empty cell
+1 representing a fresh fruit
+2 representing a rotten fruit
+Every minute, if a fresh fruit is horizontally or vertically adjacent to a rotten fruit, then the fresh fruit also becomes rotten.
+
+Return the minimum number of minutes that must elapse until there are zero fresh fruits remaining. If this state is impossible within the grid, return -1.
+
+//
+import Foundation
+
+func orangesRotting(_ grid: inout [[Int]]) -> Int {
+    var queue = [(Int, Int)]()
+    var fresh = 0
+    var time = 0
+
+    let rows = grid.count
+    let cols = grid[0].count
+    let directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+    // Count fresh oranges and add rotten ones to the queue
+    for r in 0..<rows {
+        for c in 0..<cols {
+            if grid[r][c] == 1 {
+                fresh += 1
+            } else if grid[r][c] == 2 {
+                queue.append((r, c))
+            }
+        }
+    }
+
+    // BFS traversal
+    while fresh > 0 && !queue.isEmpty {
+        let length = queue.count
+        for _ in 0..<length {
+            let (r, c) = queue.removeFirst()
+
+            for (dr, dc) in directions {
+                let row = r + dr
+                let col = c + dc
+                
+                if row >= 0, row < rows, col >= 0, col < cols, grid[row][col] == 1 {
+                    grid[row][col] = 2
+                    queue.append((row, col))
+                    fresh -= 1
+                }
+            }
+        }
+        time += 1
+    }
+
+    return fresh == 0 ? time : -1
+}
+
+Explanation of Changes:
+Used a Swift Array (queue) instead of deque.
+Used tuples (Int, Int) for queue elements.
+Checked bounds safely using if row >= 0, row < rows, col >= 0, col < cols.
+Used removeFirst() to mimic popleft() behavior in BFS.
+Kept the logic unchanged, ensuring BFS spreads the rotten oranges until no fresh oranges remain.
+This function modifies grid in place and returns the minimum time required for all oranges to rot. If some fresh oranges remain unreachable, it returns -1. 🚀
