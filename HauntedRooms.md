@@ -1,4 +1,7 @@
 ## Haunted Rooms
+
+The "Leaked LeetCode Questions" series often features a scenario where CodeBots have moved into a new building with rooms of varying costs, including some free rooms. However, there's a rumor that the free rooms are haunted, so the CodeBots are unwilling to stay in them. This scenario is used to explore problem-solving strategies in a coding context
+
 Here's the Swift version of the JavaScript function matrixElementsSum. This function calculates the sum of values in a 2D matrix where any element below a 0 is also considered 0 (like in a haunted house floor plan problem).
 
 ```swift
