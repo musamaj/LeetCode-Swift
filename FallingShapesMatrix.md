@@ -1,11 +1,11 @@
 ### Falling Shapes
 Yes, this sounds like a variation of a falling shapes problem, often inspired by Tetris-like mechanics. The matrix contains:
 
-* → part of a figure or shape (like a block)
+'*' → part of a figure or shape (like a block)
 
-- → empty space
+'-' → empty space
 
-# → obstacle
+'#' → obstacle
 
 Goal:
 Find the minimum number of # obstacles that must be removed to let the * figure fall straight down vertically until it touches the bottom row or is blocked by another obstacle.
